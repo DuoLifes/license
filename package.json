@@ -1,0 +1,82 @@
+{
+  "name": "cem-license-manager",
+  "version": "1.0.0",
+  "description": "CEM License Manager - 基于 Electron、Vue3 和 Element Plus 的许可证管理工具",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "concurrently \"npm run dev:vite\" \"npm run dev:electron\"",
+    "dev:vite": "vite",
+    "dev:electron": "cross-env NODE_ENV=development electron .",
+    "build": "npm run build:vite && npm run build:electron",
+    "build:vite": "vite build",
+    "build:electron": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "keywords": [
+    "electron",
+    "vue",
+    "element-plus",
+    "license",
+    "manager"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.3",
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "electron": "^35.1.1",
+    "electron-builder": "^26.0.12",
+    "vite": "^6.2.3"
+  },
+  "dependencies": {
+    "element-plus": "^2.9.7",
+    "node-forge": "^1.3.1",
+    "node-rsa": "^1.1.1",
+    "sqlite3": "^5.1.7",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0",
+    "pinia": "^2.1.7"
+  },
+  "build": {
+    "appId": "com.cem.license-manager",
+    "productName": "CEM License Manager",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "DB/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
+  },
+  "electronConfig": {
+    "webPreferences": {
+      "spellcheck": false,
+      "enableRemoteModule": false,
+      "nodeIntegration": false,
+      "contextIsolation": true,
+      "sandbox": true,
+      "webSecurity": true,
+      "allowRunningInsecureContent": false,
+      "enableWebSQL": false,
+      "autoplayPolicy": "user-gesture-required"
+    }
+  }
+}
